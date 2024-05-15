@@ -13,7 +13,7 @@ catalogue = {
     "Wispghoul": {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2}}
 
 choice = easygui.buttonbox("What would you like to do?",
-                           choices=["Output all", "Exit"],
+                           choices=["Find card", "Exit"],
                            title="CATALOGUE OPTIONS")
 
 
@@ -46,6 +46,23 @@ def OutputAll(cards):
 
 
 while choice != "Exit" and choice is not None:
-    if choice == "Output all":
-        OutputAll(catalogue)
-        break
+    if choice == "Find card":
+        card_list = []
+        for i in catalogue.keys():
+            card_list.append(i)
+        search = easygui.buttonbox("Please select the card you want to find",
+                                   choices=card_list)
+        result = f"┌{'─'*(int(len(search) / 2) + 1)}┬{'─' * 5}┬{'─' * 5}┬{'─' * 5}┬{'─' * 5}┐\n" \
+                 f"│{' '*((int(len(search) / 2) + 1) * 2)}│ Strength │  Speed   │ Stealth  │ Cunning  │\n" \
+                 f"├{'─'*(int(len(search) / 2) + 1)}┼{'─' * 5}┼{'─' * 5}┼{'─' * 5}┼{'─' * 5}┤\n"
+        if len(search) % 2 == 1:
+            result += f"│{search} │"
+        else:
+            result += f"│{search}  │"
+        for i, j in catalogue[search].items():
+            if len(str(j)) == 1:
+                result += f"    {j}     │"
+            elif len(str(j)) == 2:
+                result += f"    {j}    │"
+        result += f"\n└{'─' * (int(len(search) / 2) + 1)}┴{'─' * 5}┴{'─' * 5}┴{'─' * 5}┴{'─' * 5}┘\n"
+        easygui.msgbox(result)
