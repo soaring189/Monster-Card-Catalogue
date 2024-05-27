@@ -52,7 +52,7 @@ def EditCard(edit, result_before_edit):
                 str(catalogue[edit]["Cunning"])]
     new_card = easygui.multenterbox('Enter the new card information:',
                                     'Change card', fields, defaults)
-    while new_card is not None and new_card != defaults:
+    while new_card is not None and new_card != defaults and new_card != ['', '', '', '', '']:
         if len(new_card[0]) < 26:
             try:
                 new_card[1] = int(new_card[1])
