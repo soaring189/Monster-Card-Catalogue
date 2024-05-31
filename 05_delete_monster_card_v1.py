@@ -1,3 +1,4 @@
+# Let the user press a button to select the card the user wants to delete
 import easygui
 
 catalogue = {

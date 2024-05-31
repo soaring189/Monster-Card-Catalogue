@@ -1,3 +1,4 @@
+# Let the user confirm before deleting and place the code inside a function
 import easygui
 
 catalogue = {

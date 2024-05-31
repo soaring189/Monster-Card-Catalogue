@@ -1,3 +1,4 @@
+# Allow the user to select the card that the user wants to search for
 import easygui
 
 catalogue = {

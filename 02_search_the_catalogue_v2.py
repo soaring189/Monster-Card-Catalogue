@@ -1,3 +1,4 @@
+# Allow the user to enter the name of the monster that the user wants to find
 import easygui
 
 catalogue = {

@@ -1,3 +1,4 @@
+# Output the catalogue in the GUI
 import easygui
 
 catalogue = {

@@ -1,3 +1,4 @@
+# Allow the user to edit the monster name and value through only one window
 import easygui
 
 catalogue = {

@@ -1,3 +1,4 @@
+# Allow users to add monster cards through multiple Windows
 import easygui
 
 catalogue = {

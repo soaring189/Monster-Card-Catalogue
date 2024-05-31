@@ -1,3 +1,4 @@
+# The main program that consolidates all the code
 import easygui
 
 catalogue = {

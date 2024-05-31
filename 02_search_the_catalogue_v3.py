@@ -1,3 +1,4 @@
+# Let the program can also find the card when the user types in the name with different cases
 import easygui
 
 catalogue = {

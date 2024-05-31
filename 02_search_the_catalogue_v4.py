@@ -1,3 +1,4 @@
+# Place the code inside a function
 import easygui
 
 catalogue = {

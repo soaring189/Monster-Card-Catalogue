@@ -1,3 +1,4 @@
+# Beautify the output
 import easygui
 
 catalogue = {

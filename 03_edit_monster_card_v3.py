@@ -1,3 +1,4 @@
+# Let the user confirm after editing
 import easygui
 
 catalogue = {
