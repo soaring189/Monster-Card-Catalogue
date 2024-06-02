@@ -16,7 +16,7 @@ catalogue = {
 choice = ""
 
 
-def OutputAll():
+def output_all():
     if catalogue != {}:
         max_name_length = max(len(name) for name in catalogue.keys())
         output = f"┌{'─' * (int(max_name_length / 2) + 1)}" \
@@ -47,7 +47,7 @@ def OutputAll():
         easygui.msgbox("There is no card in the catalogue")
 
 
-def DeleteCard():
+def delete_card():
     if catalogue != {}:
         card_list = []
         for i in catalogue.keys():
@@ -83,7 +83,7 @@ def DeleteCard():
         easygui.msgbox("There is no card in the catalogue")
 
 
-def AddCard():
+def add_card():
     fields = ["Name:", "Strength:", "Speed:", "Stealth:", "Cunning:"]
     new_card = easygui.multenterbox('Enter the new card information:',
                                     'Change card', fields)
@@ -152,7 +152,7 @@ def AddCard():
                 'Enter the new card information:', 'Add card', fields)
 
 
-def FindCard(search):
+def find_card(search):
     if search is not None and search != "":
         if search.capitalize() in catalogue:
             search = search.capitalize()
@@ -175,12 +175,12 @@ def FindCard(search):
                       f"┴{'─' * 5}┴{'─' * 5}┴{'─' * 5}┴{'─' * 5}┘\n"
             if easygui.buttonbox(result + "\nDo you want to make any changes?",
                                  choices=["Yes", "No"]) == "Yes":
-                EditCard(search.capitalize(), result)
+                edit_card(search.capitalize(), result)
         else:
             easygui.msgbox("This card is not in the catalogue")
 
 
-def EditCard(edit, result_before_edit):
+def edit_card(edit, result_before_edit):
     fields = ["Name:", "Strength:", "Speed:", "Stealth:", "Cunning:"]
     defaults = [edit,
                 str(catalogue[edit]["Strength"]),
@@ -256,10 +256,10 @@ while choice != "Exit" and choice is not None:
                                         "Find card", "Output all", "Exit"],
                                title="CATALOGUE OPTIONS")
     if choice == "Add card":
-        AddCard()
+        add_card()
     elif choice == "Delete card":
-        DeleteCard()
+        delete_card()
     elif choice == "Find card":
-        FindCard(easygui.enterbox("Please enter the card you want to find"))
+        find_card(easygui.enterbox("Please enter the card you want to find"))
     elif choice == "Output all":
-        OutputAll()
+        output_all()
