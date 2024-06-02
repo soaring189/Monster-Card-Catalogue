@@ -1,6 +1,7 @@
 # The main program that consolidates all the code
 import easygui
 
+# Store data in a dictionary
 catalogue = {
     "Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
     "Vexscream": {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
@@ -17,7 +18,9 @@ choice = ""
 
 
 def output_all():
+    # Check if there is any card in the catalogue
     if catalogue != {}:
+        # If there is any card in the catalogue, get the max name length
         max_name_length = max(len(name) for name in catalogue.keys())
         output = f"┌{'─' * (int(max_name_length / 2) + 1)}" \
                  f"┬{'─' * 5}┬{'─' * 5}┬{'─' * 5}┬{'─' * 5}┐\n"
@@ -26,32 +29,40 @@ def output_all():
                   f"│ Strength │  Speed   │ Stealth  │ Cunning  │\n"
         output += f"├{'─' * (int(max_name_length / 2) + 1)}" \
                   f"┼{'─' * 5}┼{'─' * 5}┼{'─' * 5}┼{'─' * 5}┤\n"
+        # Outer loop
         for i, j in catalogue.items():
             if max_name_length % 2 == 1:
                 output += f"│{i}{' ' * (max_name_length - len(i) + 1)}│"
             else:
                 output += f"│{i}{' ' * (max_name_length - len(i) + 2)}│"
+            # Inner loop
             for k in j:
                 if len(str(j[k])) == 2:
                     output += f"    {j[k]}    │"
                 elif len(str(j[k])) == 1:
                     output += f"    {j[k]}     │"
             if i != list(catalogue.keys())[-1]:
+                # If it's not the last loop
                 output += f"\n├{'─' * (int(max_name_length / 2) + 1)}" \
                           f"┼{'─' * 5}┼{'─' * 5}┼{'─' * 5}┼{'─' * 5}┤\n"
             else:
+                # If it's the last loop
                 output += f"\n└{'─' * (int(max_name_length / 2) + 1)}" \
                           f"┴{'─' * 5}┴{'─' * 5}┴{'─' * 5}┴{'─' * 5}┘\n"
         easygui.msgbox(output, title="Cards")
     else:
+        # If there are no cards in the catalogue
         easygui.msgbox("There is no card in the catalogue")
 
 
 def delete_card():
+    # Check if there is any card in the catalogue
     if catalogue != {}:
+        # If there is any card in the catalogue, append all the card in a list
         card_list = []
         for i in catalogue.keys():
             card_list.append(i)
+        # Add a Cancel button
         card_list.append("Cancel")
         delete = easygui.buttonbox("Please select the card you want to delete",
                                    choices=card_list)
@@ -80,6 +91,7 @@ def delete_card():
             if confirm == "Yes":
                 catalogue.pop(delete)
     else:
+        # If there are no cards in the catalogue
         easygui.msgbox("There is no card in the catalogue")
 
 
@@ -88,7 +100,9 @@ def add_card():
     new_card = easygui.multenterbox('Enter the new card information:',
                                     'Change card', fields)
     while new_card is not None and new_card != ['', '', '', '', '']:
+        # If the card name length is shorter than 26
         if len(new_card[0]) < 26:
+            # If the card is not in the catalogue
             if str(new_card[0]).capitalize() not in catalogue:
                 try:
                     new_card[1] = int(new_card[1])
@@ -97,6 +111,7 @@ def add_card():
                     new_card[4] = int(new_card[4])
                     if 0 < new_card[1] < 26 and 0 < new_card[2] < 26 and 0 < \
                             new_card[3] < 26 and 0 < new_card[4] < 26:
+                        # If all values are valid
                         add_output = \
                             f"┌{'─' * (int(len(new_card[0]) / 2) + 1)}" \
                             f"┬{'─' * 5}┬{'─' * 5}┬{'─' * 5}┬{'─' * 5}┐\n" \
@@ -129,12 +144,14 @@ def add_card():
                                  "Cunning": new_card[4]}
                         break
                     else:
+                        # If there are invalid inputs in any of the four boxes
                         easygui.msgbox(
                             "Please enter the four values from 1 to 25")
                         new_card = easygui.multenterbox(
                             'Enter the new card information:', 'Change card',
                             fields)
                 except ValueError:
+                    # If there is a non-int input in any of the four boxes
                     easygui.msgbox(
                         "Please enter an integer for each of the four "
                         "values of the monster card")
@@ -142,10 +159,12 @@ def add_card():
                         'Enter the new card information:',
                         'Add card', fields)
             else:
+                # If the card is already in the catalogue
                 easygui.msgbox("This card is already in the catalogue")
                 new_card = easygui.multenterbox(
                     'Enter the new card information:', 'Add card', fields)
         else:
+            # If the card name length is longer than 25
             easygui.msgbox("Please enter the new monster card name "
                            "no longer than 25")
             new_card = easygui.multenterbox(
@@ -189,7 +208,11 @@ def edit_card(edit, result_before_edit):
                 str(catalogue[edit]["Cunning"])]
     new_card = easygui.multenterbox('Enter the new card information:',
                                     'Change card', fields, defaults)
-    while new_card is not None and new_card != defaults and new_card != ['', '', '', '', '']:
+    while new_card is not None and new_card != defaults and new_card != ['',
+                                                                         '',
+                                                                         '',
+                                                                         '',
+                                                                         '']:
         if len(new_card[0]) < 26:
             try:
                 new_card[1] = int(new_card[1])
