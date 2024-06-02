@@ -172,7 +172,9 @@ def add_card():
 
 
 def find_card(search):
+    # Check if the output is valid
     if search is not None and search != "":
+        # Checks whether the card is in the dictionary
         if search.capitalize() in catalogue:
             search = search.capitalize()
             result = f"┌{'─' * (int(len(search) / 2) + 1)}" \
@@ -201,6 +203,7 @@ def find_card(search):
 
 def edit_card(edit, result_before_edit):
     fields = ["Name:", "Strength:", "Speed:", "Stealth:", "Cunning:"]
+    # Setting default content
     defaults = [edit,
                 str(catalogue[edit]["Strength"]),
                 str(catalogue[edit]["Speed"]),
